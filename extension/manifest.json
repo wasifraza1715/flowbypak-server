@@ -1,0 +1,60 @@
+{
+  "manifest_version": 3,
+  "name": "Flow by Pak",
+  "version": "1.0",
+  "version_name": "1.0",
+  "description": "AI Video Platform — Unlock Google Flow with your FlowbyPak plan.",
+  "minimum_chrome_version": "119",
+  "permissions": [
+    "cookies",
+    "management",
+    "storage",
+    "alarms",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.labs.google/*",
+    "*://*.google.com/*",
+    "http://localhost/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://labs.google/fx/tools/flow*"],
+      "js": ["watchdog-main.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://labs.google/fx/tools/flow*"],
+      "js": ["watchdog-isolated.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["*://*.labs.google/*", "http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Flow by Pak",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "short_name": "Flow by Pak"
+}
