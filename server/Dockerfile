@@ -7,7 +7,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache rewrite
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers
 
 # Copy server application
 COPY . /var/www/html/
